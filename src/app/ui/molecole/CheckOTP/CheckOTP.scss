@@ -1,0 +1,30 @@
+.error {
+	border: 1px solid red !important;
+}
+
+.success {
+	border: 1px solid green !important;
+}
+
+#myInput-0::placeholder {
+	color: red;
+}
+
+#myInput-1::placeholder {
+	color: green;
+}
+
+#myInput-2::placeholder {
+	color: blue;
+}
+#myInput-3::placeholder {
+	color: violet;
+}
+
+#myInput-4::placeholder {
+	color: black;
+}
+
+#myInput-5::placeholder {
+	color: brown;
+}
