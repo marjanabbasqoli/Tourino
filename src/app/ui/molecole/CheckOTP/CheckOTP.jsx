@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import OtpInput from "react18-input-otp";
 import { useQuery } from "@tanstack/react-query";
 
 import { setCookie } from "@/app/utils/cookie";
 import { getProfile } from "@/app/services/user";
-import { checkOtp } from "@/app/services/auth";
+import { checkOtp, sendOtp } from "@/app/services/auth";
+import Countdown from "react-countdown";
 
-function CheckOTP({ mobile }) {
+function CheckOTP({ mobile, setModal, setStep, setMobile }) {
 	const [code, setCode] = useState("");
+	const [disabled, setDisabled] = useState(true);
+	const [key, setKey] = useState(false);
+
+	useEffect(() => {}, []);
 
 	const queryKey = ["profile"];
 	const queryFn = getProfile;
@@ -23,31 +28,85 @@ function CheckOTP({ mobile }) {
 		const { response, error } = await checkOtp(mobile, code);
 		if (response) {
 			setCookie(response.data);
-			// navigate("/");
+			setModal(false);
 			refetch();
 		}
+
 		if (error) console.log(error.response.data.message);
+
+		// setDisabled(true);
+	};
+
+	// const setResendTime = () => {
+	// 	setTimeout(() => {
+	// 		setDisabled(false);
+	// 	}, 10000);
+	// };
+
+	// setResendTime();
+
+	const backHandler = () => {
+		setStep(1);
+		setMobile("");
+	};
+
+	const resendHandler = async () => {
+		// setDisabled(true);
+		setKey(true);
+		await sendOtp(mobile);
+		// setResendTime();
+		return;
+	};
+
+	const Completionist = () => <button onClick={resendHandler}>resend</button>;
+	const timerRenderer = (props) => {
+		if (props.completed) {
+			return <Completionist />;
+		} else {
+			setKey(false);
+			return (
+				<div>
+					{props.formatted.minutes}:{props.formatted.seconds}
+					<span>تا ارسال مجدد کد</span>
+				</div>
+			);
+		}
 	};
 
 	return (
-		<form dir="ltr" onSubmit={submitHandler}>
-			<OtpInput
-				numInputs={6}
-				id="myInput"
-				placeholder=""
-				value={code}
-				onChange={(enteredCode) => {
-					setCode(enteredCode);
-				}}
-				isSuccessed={false}
-				errorStyle="error"
-				successStyle="success"
-				separator={<span>-</span>}
-				separateAfter={1}
-				shouldAutoFocus
-			/>
-			<button type="submit">ورود به تورینو</button>
-		</form>
+		<>
+			<button onClick={backHandler}>back</button>
+			<form dir="ltr" onSubmit={submitHandler}>
+				<OtpInput
+					numInputs={6}
+					id="myInput"
+					placeholder=""
+					value={code}
+					onChange={(enteredCode) => {
+						setCode(enteredCode);
+					}}
+					isSuccessed={false}
+					errorStyle="error"
+					successStyle="success"
+					separator={<span>-</span>}
+					separateAfter={1}
+					shouldAutoFocus
+				/>
+
+				<Countdown
+					date={Date.now() + 2 * 60 * 1000}
+					key={key}
+					renderer={timerRenderer}
+					zeroPadTime={2}
+				>
+					<Completionist />
+				</Countdown>
+
+				<button type="submit" data-disabled={disabled}>
+					ورود به تورینو
+				</button>
+			</form>
+		</>
 	);
 }
 

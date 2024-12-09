@@ -11,6 +11,7 @@ import CheckOTP from "../../../ui/molecole/CheckOTP/CheckOTP";
 function Header() {
 	const [mobile, setMobile] = useState("");
 	const [step, setStep] = useState(1);
+	const [modal, setModal] = useState(false);
 
 	const queryKey = ["profile"];
 	const queryFn = getProfile;
@@ -22,13 +23,31 @@ function Header() {
 
 	return (
 		<>
-			<div>{data ? "dashboard" : <button>ورود</button>}</div>
+			<div>
+				{data ? "dashboard" : <button onClick={() => setModal(true)}>ورود</button>}
+			</div>
 
-			{step === 1 && (
-				<SendOTP setStep={setStep} mobile={mobile} setMobile={setMobile} />
+			{modal && (
+				<div className="modal">
+					{step === 1 && (
+						<SendOTP
+							setStep={setStep}
+							mobile={mobile}
+							setMobile={setMobile}
+							setModal={setModal}
+						/>
+					)}
+
+					{step === 2 && (
+						<CheckOTP
+							mobile={mobile}
+							setModal={setModal}
+							setStep={setStep}
+							setMobile={setMobile}
+						/>
+					)}
+				</div>
 			)}
-
-			{step === 2 && <CheckOTP mobile={mobile} />}
 		</>
 	);
 }
