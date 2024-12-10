@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCookie, setCookie } from "../utils/cookie";
-import { getNewTokens } from "../services/token";
+import { getNewTokens } from "../../services/token";
 
 const api = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -28,12 +28,11 @@ api.interceptors.response.use(
 	},
 	async (error) => {
 		const originalRequest = error.config;
-		console.log({ error });
-		if (error?.response?.status === 401 && !originalRequest._retry) {
+		if (error?.response.status === 401 && !originalRequest._retry) {
 			originalRequest._retry = true;
 			const res = await getNewTokens();
-			if (!res?.response) return;
-			setCookie(res.response.data);
+			if (!res.response) return;
+			setCookie("accessToken", res.response.data.accessToken, 30);
 			return api(originalRequest);
 		}
 	}

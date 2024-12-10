@@ -1,5 +1,5 @@
-import api from "../configs/api";
+import api from "../core/configs/api";
 
-const getProfile = () => api.get("user/profile").then((res) => res || false);
+const getProfile = () => api.get("user/profile");
 
 export { getProfile };

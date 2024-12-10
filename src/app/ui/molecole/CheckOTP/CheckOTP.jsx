@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import OtpInput from "react18-input-otp";
 import { useQuery } from "@tanstack/react-query";
 
-import { setCookie } from "@/app/utils/cookie";
+import { setCookie } from "@/app/core/utils/cookie";
 import { getProfile } from "@/app/services/user";
 import { checkOtp, sendOtp } from "@/app/services/auth";
 import Countdown from "react-countdown";
@@ -27,7 +27,8 @@ function CheckOTP({ mobile, setModal, setStep, setMobile }) {
 		e.preventDefault();
 		const { response, error } = await checkOtp(mobile, code);
 		if (response) {
-			setCookie(response.data);
+			setCookie("accessToken", response.data.accessToken, 30);
+			setCookie("refreshToken", response.data.refreshToken, 365);
 			setModal(false);
 			refetch();
 		}
@@ -63,7 +64,7 @@ function CheckOTP({ mobile, setModal, setStep, setMobile }) {
 		if (props.completed) {
 			return <Completionist />;
 		} else {
-			setKey(false);
+			// setKey(false);
 			return (
 				<div>
 					{props.formatted.minutes}:{props.formatted.seconds}

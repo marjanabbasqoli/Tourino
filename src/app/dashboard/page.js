@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
-import { getCookie } from "../utils/cookie";
+import { getCookie } from "../core/utils/cookie";
 
 function page() {
 	useEffect(() => {
