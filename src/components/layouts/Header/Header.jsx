@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
-import { getProfile } from "@/app/services/user";
+import { getProfile } from "@/services/user";
 
 import SendOTP from "../../../ui/molecole/SendOTP/SendOTP";
 import CheckOTP from "../../../ui/molecole/CheckOTP/CheckOTP";

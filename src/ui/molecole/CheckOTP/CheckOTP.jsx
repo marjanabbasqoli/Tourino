@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import OtpInput from "react18-input-otp";
 import { useQuery } from "@tanstack/react-query";
 
-import { setCookie } from "@/app/core/utils/cookie";
-import { getProfile } from "@/app/services/user";
-import { checkOtp, sendOtp } from "@/app/services/auth";
+import { setCookie } from "@/core/utils/cookie";
+import { getProfile } from "@/services/user";
+import { checkOtp, sendOtp } from "@/services/auth";
 import Countdown from "react-countdown";
 
 function CheckOTP({ mobile, setModal, setStep, setMobile }) {

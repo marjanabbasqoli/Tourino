@@ -1,8 +1,9 @@
 import localFont from "next/font/local";
-import "./globals.css";
 
-import TanstackProvider from "./components/partilas/providers/TanstackProvider";
-import Header from "./components/layouts/Header/Header";
+import TanstackProvider from "@/components/partilas/providers/TanstackProvider";
+import Header from "@/components/layouts/Header/Header";
+
+import "./globals.css";
 
 // const geistSans = localFont({
 // 	src: "./fonts/GeistVF.woff",
@@ -16,10 +17,10 @@ import Header from "./components/layouts/Header/Header";
 // });
 
 const yekanBakh = localFont({
-	src: "./fonts/yekan-bakh/YekanBakh-Regular.eot",
-	src: "./fonts/yekan-bakh/YekanBakh-Regular.woff",
-	src: "./fonts/yekan-bakh/YekanBakh-Regular.woff2",
-	src: "./fonts/yekan-bakh/YekanBakh-Regular.ttf",
+	src: "../assets/fonts/yekan-bakh/YekanBakh-Regular.eot",
+	src: "../assets/fonts/yekan-bakh/YekanBakh-Regular.woff",
+	src: "../assets/fonts/yekan-bakh/YekanBakh-Regular.woff2",
+	src: "../assets/fonts/yekan-bakh/YekanBakh-Regular.ttf",
 	variable: "--font-yekan-bakh",
 	weight: "400",
 });

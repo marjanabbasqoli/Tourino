@@ -1,5 +1,15 @@
-import HomePage from "./components/templates/HomePage/HomePage";
+import { serverFetch } from "@/services/http";
 
-export default function Home() {
-	return <HomePage />;
+import SearchForm from "@/components/templates/HomePage/SearchForm/SearchForm";
+import ToursList from "@/components/templates/HomePage/ToursList/ToursList";
+
+export default async function Home({ searchParams }) {
+	const data = await serverFetch("tour", searchParams, { cache: "no-store" });
+
+	return (
+		<>
+			<SearchForm />
+			<ToursList toursData={data} />
+		</>
+	);
 }
