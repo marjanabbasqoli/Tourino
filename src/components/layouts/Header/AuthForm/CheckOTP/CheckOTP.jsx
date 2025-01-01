@@ -1,41 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import OtpInput from "react18-input-otp";
-import { useQuery } from "@tanstack/react-query";
-
-import { setCookie } from "@/core/utils/cookie";
-import { getProfile } from "@/services/user";
-import { checkOtp, sendOtp } from "@/services/auth";
 import Countdown from "react-countdown";
 
-function CheckOTP({ mobile, setModal, setStep, setMobile }) {
+import { useCheckOtp } from "@/services/mutations";
+
+function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 	const [code, setCode] = useState("");
-	const [disabled, setDisabled] = useState(true);
-	const [key, setKey] = useState(false);
 
-	useEffect(() => {}, []);
-
-	const queryKey = ["profile"];
-	const queryFn = getProfile;
-
-	const { refetch } = useQuery({
-		queryKey,
-		queryFn,
-	});
+	const { isPending, mutate } = useCheckOtp();
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
-		const { response, error } = await checkOtp(mobile, code);
-		if (response) {
-			setCookie("accessToken", response.data.accessToken, 30);
-			setCookie("refreshToken", response.data.refreshToken, 365);
-			setModal(false);
-			refetch();
-		}
 
-		if (error) console.log(error.response.data.message);
+		if (isPending) return;
 
-		// setDisabled(true);
+		mutate(
+			{ mobile, code },
+			{
+				onSuccess: async (data) => {
+					setIsOpen(false);
+					setStep(1);
+				},
+				onError: (error) => {
+					console.log(error);
+				},
+			}
+		);
 	};
 
 	// const setResendTime = () => {
@@ -51,13 +42,13 @@ function CheckOTP({ mobile, setModal, setStep, setMobile }) {
 		setMobile("");
 	};
 
-	const resendHandler = async () => {
-		// setDisabled(true);
-		setKey(true);
-		await sendOtp(mobile);
-		// setResendTime();
-		return;
-	};
+	// const resendHandler = async () => {
+	// 	// setDisabled(true);
+	// 	setKey(true);
+	// 	await useSendOtp(mobile);
+	// 	// setResendTime();
+	// 	return;
+	// };
 
 	const Completionist = () => <button onClick={resendHandler}>resend</button>;
 	const timerRenderer = (props) => {
@@ -103,9 +94,7 @@ function CheckOTP({ mobile, setModal, setStep, setMobile }) {
 					<Completionist />
 				</Countdown>
 
-				<button type="submit" data-disabled={disabled}>
-					ورود به تورینو
-				</button>
+				<button type="submit">ورود به تورینو</button>
 			</form>
 		</>
 	);

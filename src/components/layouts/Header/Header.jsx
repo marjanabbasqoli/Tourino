@@ -3,51 +3,51 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
-import { getProfile } from "@/services/user";
 
-import SendOTP from "../../../ui/molecole/SendOTP/SendOTP";
-import CheckOTP from "../../../ui/molecole/CheckOTP/CheckOTP";
+
+import SendOTP from "./AuthForm/SendOTP/SendOTP";
+import CheckOTP from "./AuthForm/CheckOTP/CheckOTP";
+import ModalContainer from "@/components/partilas/containers/ModalContainer/ModalContainer";
+import AuthForm from "./AuthForm/AuthForm";
 
 function Header() {
-	const [mobile, setMobile] = useState("");
-	const [step, setStep] = useState(1);
-	const [modal, setModal] = useState(false);
+	
 
-	const queryKey = ["profile"];
-	const queryFn = getProfile;
+	// const { data } = useQuery({
+	// 	queryKey,
+	// 	queryFn,
+	// });
 
-	const { data } = useQuery({
-		queryKey,
-		queryFn,
-	});
+	// if (data?.data) return <Link href="/profile">ورود به حساب کاربری</Link>;
 
 	return (
 		<>
-			<div>
-				{data ? "dashboard" : <button onClick={() => setModal(true)}>ورود</button>}
+			<AuthForm />
+			{/* <div>
+				<button onClick={() => setIsOpen(true)}>ورود</button>
 			</div>
 
-			{modal && (
+			<ModalContainer>
 				<div className="modal">
 					{step === 1 && (
 						<SendOTP
 							setStep={setStep}
 							mobile={mobile}
 							setMobile={setMobile}
-							setModal={setModal}
+							setIsOpen={setIsOpen}
 						/>
 					)}
 
 					{step === 2 && (
 						<CheckOTP
 							mobile={mobile}
-							setModal={setModal}
+							setIsOpen={setIsOpen}
 							setStep={setStep}
 							setMobile={setMobile}
 						/>
 					)}
 				</div>
-			)}
+			</ModalContainer> */}
 		</>
 	);
 }
