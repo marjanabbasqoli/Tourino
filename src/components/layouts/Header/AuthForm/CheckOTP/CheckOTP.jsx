@@ -7,7 +7,7 @@ import { useCheckOtp } from "@/services/mutations";
 
 function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 	const [code, setCode] = useState("");
-
+	const [key, setKey] = useState("");
 	const { isPending, mutate } = useCheckOtp();
 
 	const submitHandler = async (e) => {

@@ -35,11 +35,11 @@ const useCheckOtp = () => {
 // 	return useMutation({ mutationFn, onSuccess });
 // };
 
-// const useAddToBasket = () => {
-// 	const mutationFn = (id) => api.put(`basket/${id}`);
+const useAddToBasket = () => {
+	const mutationFn = (id) => api.put(`basket/${id}`);
 
-// 	return useMutation({ mutationFn });
-// };
+	return useMutation({ mutationFn });
+};
 
 // const useCheckout = () => {
 // 	const queryClient = useQueryClient();
@@ -53,4 +53,4 @@ const useCheckOtp = () => {
 // 	return useMutation({ mutationFn, onSuccess });
 // };
 
-export { useSendOtp, useCheckOtp };
+export { useSendOtp, useCheckOtp, useAddToBasket };
