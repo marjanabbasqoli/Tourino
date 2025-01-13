@@ -18,10 +18,16 @@ body {
 	color: var(--foreground);
 	background: var(--background);
 	font-family: var(--font-yekan-bakh), Arial, Helvetica, sans-serif;
+	@apply text-base;
 }
 
-@layer utilities {
+/* @layer utilities {
 	.text-balance {
 		text-wrap: balance;
 	}
+} */
+
+.container {
+	@apply mx-auto;
+	@apply px-4;
 }

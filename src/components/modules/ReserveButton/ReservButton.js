@@ -10,7 +10,7 @@ function ReservButton({ id }) {
 	const clickHandler = () => {
 		mutate(id, {
 			onSuccess: (data) => {
-				console.log(data.data.message);
+				// console.log(data.data.message);
 				router.push("/checkout");
 			},
 			onError: () => {

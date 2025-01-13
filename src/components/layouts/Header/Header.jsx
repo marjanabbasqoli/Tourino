@@ -1,54 +1,24 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
+import logo from "@/assets/images/tourino-logo.svg";
 
-
-import SendOTP from "./AuthForm/SendOTP/SendOTP";
-import CheckOTP from "./AuthForm/CheckOTP/CheckOTP";
-import ModalContainer from "@/components/partilas/containers/ModalContainer/ModalContainer";
 import AuthForm from "./AuthForm/AuthForm";
+import Navbar from "./Navbar/Navbar";
 
 function Header() {
-	
-
-	// const { data } = useQuery({
-	// 	queryKey,
-	// 	queryFn,
-	// });
-
-	// if (data?.data) return <Link href="/profile">ورود به حساب کاربری</Link>;
-
 	return (
-		<>
-			<AuthForm />
-			{/* <div>
-				<button onClick={() => setIsOpen(true)}>ورود</button>
+		<div className="container">
+			<div className="flex max-lg:justify-between items-center py-[15px]">
+				<Link href="/" className="inline-block lg:me-[84px] max-lg:order-2">
+					<Image src={logo} width="146" height="44" alt="tourino logo" />
+				</Link>
+				<Navbar />
+				<AuthForm />
 			</div>
-
-			<ModalContainer>
-				<div className="modal">
-					{step === 1 && (
-						<SendOTP
-							setStep={setStep}
-							mobile={mobile}
-							setMobile={setMobile}
-							setIsOpen={setIsOpen}
-						/>
-					)}
-
-					{step === 2 && (
-						<CheckOTP
-							mobile={mobile}
-							setIsOpen={setIsOpen}
-							setStep={setStep}
-							setMobile={setMobile}
-						/>
-					)}
-				</div>
-			</ModalContainer> */}
-		</>
+		</div>
 	);
 }
 

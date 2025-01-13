@@ -1,3 +1,5 @@
+import { FaHouse, FaPhone, FaPlaneUp, FaVolumeLow } from "react-icons/fa6";
+
 const origin = [
 	{
 		id: "1",
@@ -44,4 +46,27 @@ const destination = [
 	},
 ];
 
-export { origin, destination };
+const mainMenu = [
+	{
+		title: "صفحه اصلی",
+		link: "/",
+		icon: <FaHouse />,
+	},
+	{
+		title: "خدمات گردشگری",
+		link: "/tour-services",
+		icon: <FaPlaneUp />,
+	},
+	{
+		title: "درباره ما",
+		link: "/about",
+		icon: <FaVolumeLow />,
+	},
+	{
+		title: "تماس با ما",
+		link: "/contact",
+		icon: <FaPhone />,
+	},
+];
+
+export { origin, destination, mainMenu };

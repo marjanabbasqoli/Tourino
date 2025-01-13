@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 async function TourDetails({ params }) {
-	
 	const data = await serverFetch(`tour/${params.tourId}`, null, {
 		cache: "no-store",
 	});
@@ -16,7 +15,7 @@ async function TourDetails({ params }) {
 	return (
 		<div>
 			{data?.title}
-			<ReservButton id={params.id} />
+			<ReservButton id={params.tourId} />
 		</div>
 	);
 }

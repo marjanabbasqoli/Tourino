@@ -41,16 +41,16 @@ const useAddToBasket = () => {
 	return useMutation({ mutationFn });
 };
 
-// const useCheckout = () => {
-// 	const queryClient = useQueryClient();
+const useCheckout = () => {
+	const queryClient = useQueryClient();
 
-// 	const mutationFn = (data) => api.post("order", data);
+	const mutationFn = (data) => api.post("order", data);
 
-// 	const onSuccess = () => {
-// 		queryClient.invalidateQueries({ queryKey: ["user/tours"] });
-// 	};
+	const onSuccess = () => {
+		queryClient.invalidateQueries({ queryKey: ["user/tours"] });
+	};
 
-// 	return useMutation({ mutationFn, onSuccess });
-// };
+	return useMutation({ mutationFn, onSuccess });
+};
 
-export { useSendOtp, useCheckOtp, useAddToBasket };
+export { useSendOtp, useCheckOtp, useAddToBasket, useCheckout };
