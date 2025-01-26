@@ -92,7 +92,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="fa" dir="rtl">
-			<body className={`${yekanBakh.variable}`}>
+			<body
+				className={`${yekanBakh.variable} selection:bg-primary selection:text-white text-base`}
+			>
 				<TanstackProvider>
 					<Header />
 					{children}
