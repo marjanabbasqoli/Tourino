@@ -5,7 +5,6 @@ function NavbarItems({ item, index }) {
 	const currentPath = usePathname();
 	return (
 		<li
-			key={index}
 			className={`ml-10 transition-colors max-lg:mb-[22px] ${
 				currentPath === item.link ? "text-primary" : "text-base"
 			}`}

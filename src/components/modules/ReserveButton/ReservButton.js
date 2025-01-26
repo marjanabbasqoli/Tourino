@@ -3,7 +3,7 @@
 import { useAddToBasket } from "@/services/mutations";
 import { useRouter } from "next/navigation";
 
-function ReservButton({ id }) {
+function ReservButton({ id, style }) {
 	const { mutate } = useAddToBasket();
 	const router = useRouter();
 
@@ -19,7 +19,11 @@ function ReservButton({ id }) {
 		});
 	};
 
-	return <button onClick={clickHandler}>رزرو و خرید</button>;
+	return (
+		<button onClick={clickHandler} className={style}>
+			رزرو و خرید
+		</button>
+	);
 }
 
 export default ReservButton;

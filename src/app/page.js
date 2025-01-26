@@ -2,14 +2,22 @@ import { serverFetch } from "@/services/http";
 
 import SearchForm from "@/components/templates/HomePage/SearchForm/SearchForm";
 import ToursList from "@/components/templates/HomePage/ToursList/ToursList";
+import Banner from "@/components/templates/HomePage/Banner/Banner";
+import Features from "@/components/templates/HomePage/Features/Features";
+import About from "@/components/templates/HomePage/About/About";
+import Contact from "@/components/templates/HomePage/Contact/Contact";
 
 export default async function Home({ searchParams }) {
 	const data = await serverFetch("tour", searchParams, { cache: "no-store" });
 
 	return (
 		<>
+			<Banner />
 			<SearchForm />
 			<ToursList toursData={data} />
+			<Contact />
+			{/* <About /> */}
+			<Features />
 		</>
 	);
 }

@@ -2,47 +2,47 @@ import { FaHouse, FaPhone, FaPlaneUp, FaVolumeLow } from "react-icons/fa6";
 
 const origin = [
 	{
-		id: "1",
-		name: "تهران",
+		value: "1",
+		label: "تهران",
 	},
 	{
-		id: "2",
-		name: "سنندج",
+		value: "2",
+		label: "سنندج",
 	},
 	{
-		id: "4",
-		name: "اصفهان",
+		value: "4",
+		label: "اصفهان",
 	},
 ];
 
 const destination = [
 	{
-		id: "2",
-		name: "سنندج",
+		value: "2",
+		label: "سنندج",
 	},
 	{
-		id: "3",
-		name: "مادرید",
+		value: "3",
+		label: "مادرید",
 	},
 	{
-		id: "5",
-		name: "تور سلیمانیه",
+		value: "5",
+		label: "تور سلیمانیه",
 	},
 	{
-		id: "6",
-		name: "هولیر",
+		value: "6",
+		label: "هولیر",
 	},
 	{
-		id: "7",
-		name: "مازندران",
+		value: "7",
+		label: "مازندران",
 	},
 	{
-		id: "8",
-		name: "آفرود",
+		value: "8",
+		label: "آفرود",
 	},
 	{
-		id: "9",
-		name: "ایتالیا",
+		value: "9",
+		label: "ایتالیا",
 	},
 ];
 
@@ -69,4 +69,48 @@ const mainMenu = [
 	},
 ];
 
-export { origin, destination, mainMenu };
+const footerMenu = {
+	title: "تورینو",
+	items: [
+		{
+			title: "درباره ما",
+			link: "/",
+		},
+		{
+			title: "تماس با ما",
+			link: "/",
+		},
+		{
+			title: "چرا تورینو",
+			link: "/",
+		},
+		{
+			title: "بیمه مسافرتی",
+			link: "/",
+		},
+	],
+};
+
+const servicesMenu = {
+	title: "خدمات مشتریان",
+	items: [
+		{
+			title: "پشتیبانی آنلاین",
+			link: "/",
+		},
+		{
+			title: "راهنمای خرید",
+			link: "/",
+		},
+		{
+			title: "راهنمای استرداد",
+			link: "/",
+		},
+		{
+			title: "پرسش و پاسخ",
+			link: "/",
+		},
+	],
+};
+
+export { origin, destination, mainMenu, footerMenu, servicesMenu };

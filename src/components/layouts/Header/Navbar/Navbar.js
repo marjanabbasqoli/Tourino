@@ -39,7 +39,7 @@ function Navbar() {
 					}`}
 			>
 				{mainMenu.map((item, index) => (
-					<NavbarItems item={item} index={index} />
+					<NavbarItems item={item} key={index} />
 				))}
 			</ul>
 		</div>

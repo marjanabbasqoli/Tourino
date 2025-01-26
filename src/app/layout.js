@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 
 import TanstackProvider from "@/components/partilas/providers/TanstackProvider";
 import Header from "@/components/layouts/Header/Header";
+import Footer from "@/components/layouts/Footer/Footer";
 
 import "./globals.css";
 
@@ -58,9 +59,29 @@ const yekanBakh = localFont({
 			weight: "500",
 			style: "normal",
 		},
+		{
+			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.eot",
+			weight: "bold",
+			style: "normal",
+		},
+		{
+			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.woff",
+			weight: "bold",
+			style: "normal",
+		},
+		{
+			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.woff2",
+			weight: "bold",
+			style: "normal",
+		},
+		{
+			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.ttf",
+			weight: "bold",
+			style: "normal",
+		},
 	],
 	variable: "--font-yekan-bakh",
-	weight: "400 500",
+	weight: "400 500 700",
 });
 
 export const metadata = {
@@ -75,6 +96,7 @@ export default function RootLayout({ children }) {
 				<TanstackProvider>
 					<Header />
 					{children}
+					<Footer />
 				</TanstackProvider>
 			</body>
 		</html>
