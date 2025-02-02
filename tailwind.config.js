@@ -14,10 +14,11 @@ module.exports = {
 			colors: {
 				background: "var(--background)",
 				foreground: "var(--foreground)",
-				primary: "#28A745",
+				primary: "var(--primary)",
 				primaryDark: "#10411B",
-				grayLight: "rgba(0, 0, 0, 0.12)",
+				grayLight: "var(--grayLight)",
 				gray: "rgba(0, 0, 0, 0.2)",
+				grayDark: "var(--grayDark)",
 			},
 		},
 	},

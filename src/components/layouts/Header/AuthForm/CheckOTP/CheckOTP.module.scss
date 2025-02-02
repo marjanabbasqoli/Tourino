@@ -1,0 +1,16 @@
+.OTPinput:focus-visible {
+	border: 1px solid var(--primary);
+}
+
+.OTPinput {
+	display: block;
+	width: 58px !important;
+	@media (max-width: 500px) {
+		width: 36px !important;
+		height: 36px;
+	}
+	height: 53px;
+	border: 1px solid var(--grayLight);
+	outline: none;
+	border-radius: 6px;
+}

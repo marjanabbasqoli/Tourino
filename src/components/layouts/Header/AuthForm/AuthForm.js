@@ -33,25 +33,23 @@ function AuthForm() {
 				</span>
 			</button>
 			<ModalContainer isOpen={isOpen} setIsOpen={setIsOpen}>
-				<div className="modal">
-					{step === 1 && (
-						<SendOTP
-							setStep={setStep}
-							mobile={mobile}
-							setMobile={setMobile}
-							isOpen={isOpen}
-						/>
-					)}
+				{step === 1 && (
+					<SendOTP
+						setStep={setStep}
+						mobile={mobile}
+						setMobile={setMobile}
+						isOpen={isOpen}
+					/>
+				)}
 
-					{step === 2 && (
-						<CheckOTP
-							mobile={mobile}
-							setIsOpen={setIsOpen}
-							setStep={setStep}
-							setMobile={setMobile}
-						/>
-					)}
-				</div>
+				{step === 2 && (
+					<CheckOTP
+						mobile={mobile}
+						setIsOpen={setIsOpen}
+						setStep={setStep}
+						setMobile={setMobile}
+					/>
+				)}
 			</ModalContainer>
 		</>
 	);
