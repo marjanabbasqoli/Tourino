@@ -34,8 +34,8 @@ function Features() {
 						<figure className="flex-shrink-0 sm:max-lg:mb-3 lg:me-2 max-sm:max-w-20 max-sm:me-2 sm:max-xl:min-h-28 sm:max-xl:flex sm:max-xl:items-center">
 							<Image
 								src={feature.image}
-								width={110}
-								height={110}
+								width="auto"
+								height="auto"
 								alt={feature.title}
 							/>
 						</figure>

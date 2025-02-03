@@ -11,8 +11,14 @@ const logosImage = [aira, ecunion, passengerRights, samandehi, stateAirline];
 function Logos() {
 	return (
 		<div className="flex items-center justify-evenly gap-4 sm:justify-end lg:gap-8">
-			{logosImage.map((logo) => (
-				<Image src={logo} width={68} height={74} alt="permissions" key={logo} />
+			{logosImage.map((logo, index) => (
+				<Image
+					src={logo}
+					width="auto"
+					height="auto"
+					alt="permissions"
+					key={index}
+				/>
 			))}
 		</div>
 	);
