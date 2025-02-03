@@ -1,11 +1,12 @@
 import api from "@/core/configs/api";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetUserData = () => {
+const useGetUserData = (enabled = true) => {
 	const queryFn = () => api.get("user/profile");
 	const queryKey = ["user-data"];
+	const isEnabled = () => !enabled && { enabled: false };
 
-	return useQuery({ queryKey, queryFn });
+	return useQuery({ queryKey, queryFn, isEnabled });
 };
 
 const useGetBasket = () => {

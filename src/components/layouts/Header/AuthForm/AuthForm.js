@@ -7,19 +7,32 @@ import SendOTP from "./SendOTP/SendOTP";
 import CheckOTP from "./CheckOTP/CheckOTP";
 import Link from "next/link";
 import { FaUser } from "react-icons/fa6";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { deleteCookie } from "@/core/utils/cookie";
+import DropDown from "../DropDown/DropDown";
 
 function AuthForm() {
 	const [mobile, setMobile] = useState("");
 	const [step, setStep] = useState(1);
 	const [isOpen, setIsOpen] = useState(false);
+	const [enabled, setEnabled] = useState(true);
 
 	useEffect(() => {
 		!isOpen && setMobile("");
 	}, [isOpen]);
 
-	const { data } = useGetUserData();
+	const { data, refetch, isError } = useGetUserData(enabled);
 
-	if (data?.data) return <Link href="/profile">ورود به حساب کاربری</Link>;
+	const logoutHandler = () => {
+		deleteCookie("accessToken");
+		deleteCookie("refreshToken");
+		console.log("fgdfg");
+		setEnabled(false);
+		refetch();
+	};
+
+	if (data?.data && !isError)
+		return <DropDown logoutHandler={logoutHandler} {...data.data} />;
 
 	return (
 		<>
@@ -53,6 +66,8 @@ function AuthForm() {
 			</ModalContainer>
 		</>
 	);
+
+	// if (data?.data) return <Link href="/profile">ورود به حساب کاربری</Link>;
 }
 
 export default AuthForm;

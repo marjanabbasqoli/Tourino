@@ -13,7 +13,7 @@ function Footer() {
 						<Menu />
 						<div className="flex flex-col sm:items-end">
 							<Link href="/" className="mb-5 hidden sm:block">
-								<Image src={logo} width="146" height="44" alt="tourino logo" />
+								<Image src={logo} width="146" height="44" alt="tourino logo" priority />
 							</Link>
 							<p className="text-lg font-medium mb-9 hidden sm:block">
 								تلفن پشتیبانی:&nbsp;
