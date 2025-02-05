@@ -3,7 +3,7 @@ import { useState } from "react";
 import OtpInput from "react18-input-otp";
 import Countdown from "react-countdown";
 
-import { useCheckOtp } from "@/services/mutations";
+import { useCheckOtp, useSendOtp } from "@/services/mutations";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import styles from "./CheckOTP.module.scss";
@@ -11,7 +11,10 @@ import styles from "./CheckOTP.module.scss";
 function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 	const [code, setCode] = useState("");
 	const [key, setKey] = useState("");
-	const { isPending, mutate } = useCheckOtp();
+	const { isPending, mutate, isError, isSuccess } = useCheckOtp();
+	const [errorM, setErrorM] = useState("");
+	const { mutate: mutateMobile } = useSendOtp();
+	const [stopCountdown, setStopCountdown] = useState(false);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -22,12 +25,19 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 			{ mobile, code },
 			{
 				onSuccess: async (data) => {
+					if (!data) {
+						setErrorM("فاقد اعتبار");
+						setStopCountdown(true);
+						return;
+					}
 					setIsOpen(false);
 					setStep(1);
+					console.log({ data });
 				},
-				onError: (error) => {
-					console.log(error);
-				},
+				// onError: async (error) => {
+				// 	console.log({ error });
+				// 	setErrorM(error);
+				// },
 			}
 		);
 	};
@@ -45,15 +55,25 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 		setMobile("");
 	};
 
-	// const resendHandler = async () => {
-	// 	// setDisabled(true);
-	// 	setKey(true);
-	// 	await useSendOtp(mobile);
-	// 	// setResendTime();
-	// 	return;
-	// };
+	const resendHandler = async () => {
+		// setDisabled(true);
+		setErrorM("");
+		setKey(Math.random() * 80000);
+		setStopCountdown(false);
 
-	const Completionist = () => <button onClick={resendHandler}>resend</button>;
+		// setResendTime();
+
+		mutateMobile({ mobile });
+
+		return;
+	};
+
+	const Completionist = () => (
+		<button onClick={resendHandler} className="h-16">
+			resend
+		</button>
+	);
+
 	const timerRenderer = (props) => {
 		if (props.completed) {
 			return <Completionist />;
@@ -96,25 +116,29 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 						onChange={(enteredCode) => {
 							setCode(enteredCode);
 						}}
-						isSuccessed={false}
-						errorStyle="error"
-						successStyle="success"
-						separator={""}
-						separateAfter={1}
 						shouldAutoFocus={true}
 						className="me-3"
 						inputStyle={styles.OTPinput}
+						// isSuccessed={false}
+						// errorStyle="error"
+						// successStyle="success"
+						// separator={""}
+						// separateAfter={1}
 					/>
 				</div>
 
-				<Countdown
-					date={Date.now() + 2 * 60 * 1000}
-					key={key}
-					renderer={timerRenderer}
-					zeroPadTime={2}
-				>
-					<Completionist />
-				</Countdown>
+				<div>
+					<Countdown
+						date={stopCountdown ? Date.now() : Date.now() + 0.05 * 60 * 1000}
+						key={Date.now()}
+						renderer={timerRenderer}
+						zeroPadTime={2}
+					>
+						<Completionist />
+					</Countdown>
+				</div>
+
+				<div>{errorM}</div>
 
 				<button
 					type="submit"

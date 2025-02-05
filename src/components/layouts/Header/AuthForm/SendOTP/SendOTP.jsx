@@ -1,17 +1,38 @@
 import { useSendOtp } from "@/services/mutations";
+import { useEffect, useState } from "react";
 
-function SendOTP({ setStep, mobile, setMobile }) {
+const validPhoneRegex = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
+
+function SendOTP({ setStep, mobile, setMobile, isOpen }) {
 	const { isPending, mutate } = useSendOtp();
+	const [error, setError] = useState("");
+
+	useEffect(() => {
+		setError("");
+	}, [isOpen]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+		console.log(mobile.length);
+
+		if (!mobile.length) {
+			setError("لطفا شماره موبایل را وارد کنید");
+			return;
+		}
+
+		if (!mobile.match(validPhoneRegex)) {
+			setError("لطفا شماره موبایل معتبر وارد کنید");
+			return;
+		}
 
 		if (isPending) return;
+
+		setError("");
 
 		mutate(
 			{ mobile },
 			{
-				onSuccess: (data) => {
+				onSuccess: () => {
 					setStep(2);
 				},
 				onError: (error) => {
@@ -25,18 +46,23 @@ function SendOTP({ setStep, mobile, setMobile }) {
 		<div>
 			<div className="text-3xl text-center font-bold mb-9">ورود به تورینو</div>
 			<form onSubmit={submitHandler}>
-				<label className=" block text-stone-500 mb-2.5">
-					شماره موبایل خود را وارد کنید
-				</label>
+				<div className="relative">
+					<label className=" block text-stone-500 mb-2.5">
+						شماره موبایل خود را وارد کنید
+					</label>
+					<input
+						type="text"
+						placeholder="0912***4253"
+						value={mobile}
+						onChange={(e) => setMobile(e.target.value)}
+						className="w-full border border-gray rounded-md px-2 h-[54px] outline-none mb-10"
+						dir="ltr"
+					/>
 
-				<input
-					type="number"
-					placeholder="0912***4253"
-					value={mobile}
-					onChange={(e) => setMobile(e.target.value)}
-					className="w-full border border-gray rounded-md px-2 h-[54px] outline-none mb-10"
-					dir="ltr"
-				/>
+					<div className="absolute bottom-3 start-0 text-sm text-red-600">
+						{error}
+					</div>
+				</div>
 
 				<button
 					type="submit"

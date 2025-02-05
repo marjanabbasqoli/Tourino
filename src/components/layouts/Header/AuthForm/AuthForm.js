@@ -26,7 +26,6 @@ function AuthForm() {
 	const logoutHandler = () => {
 		deleteCookie("accessToken");
 		deleteCookie("refreshToken");
-		console.log("fgdfg");
 		setEnabled(false);
 		refetch();
 	};

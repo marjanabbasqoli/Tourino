@@ -20,6 +20,8 @@ const useCheckOtp = () => {
 		queryClient.invalidateQueries({ queryKey: ["user-data"] });
 	};
 
+	// const onError = async (error) => console.log({ error });
+
 	return useMutation({ mutationFn, onSuccess });
 };
 
