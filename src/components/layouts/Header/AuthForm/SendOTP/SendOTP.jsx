@@ -1,19 +1,25 @@
+import { useEffect, useRef, useState } from "react";
+
 import { useSendOtp } from "@/services/mutations";
-import { useEffect, useState } from "react";
 
 const validPhoneRegex = /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/;
 
 function SendOTP({ setStep, mobile, setMobile, isOpen }) {
-	const { isPending, mutate } = useSendOtp();
 	const [error, setError] = useState("");
+	const input = useRef(null);
 
 	useEffect(() => {
 		setError("");
+		isOpen &&
+			setTimeout(() => {
+				input.current.focus();
+			}, 100);
 	}, [isOpen]);
 
+	const { isPending, mutate } = useSendOtp();
+	
 	const submitHandler = (e) => {
 		e.preventDefault();
-		console.log(mobile.length);
 
 		if (!mobile.length) {
 			setError("لطفا شماره موبایل را وارد کنید");
@@ -57,6 +63,8 @@ function SendOTP({ setStep, mobile, setMobile, isOpen }) {
 						onChange={(e) => setMobile(e.target.value)}
 						className="w-full border border-gray rounded-md px-2 h-[54px] outline-none mb-10"
 						dir="ltr"
+						ref={input}
+						autoFocus
 					/>
 
 					<div className="absolute bottom-3 start-0 text-sm text-red-600">

@@ -1,91 +1,58 @@
 import { useState } from "react";
 
 import OtpInput from "react18-input-otp";
-import Countdown from "react-countdown";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 import { useCheckOtp, useSendOtp } from "@/services/mutations";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import CountDown from "@/components/modules/CountDown/CountDown";
 
 import styles from "./CheckOTP.module.scss";
 
 function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 	const [code, setCode] = useState("");
-	const [key, setKey] = useState("");
-	const { isPending, mutate, isError, isSuccess } = useCheckOtp();
-	const [errorM, setErrorM] = useState("");
-	const { mutate: mutateMobile } = useSendOtp();
+	const [error, setError] = useState("");
 	const [stopCountdown, setStopCountdown] = useState(false);
+	const { isPending, mutate } = useCheckOtp();
+	const { mutate: mutateMobile } = useSendOtp();
 
-	const submitHandler = async (e) => {
+	const messageStyle = error.length
+		? "bg-red-50 text-rose-600"
+		: !stopCountdown
+		? "bg-green-50 text-green-600"
+		: "bg-orange-50 text-orange-600";
+
+	const submitHandler = (e) => {
 		e.preventDefault();
+		setStopCountdown(true);
 
 		if (isPending) return;
 
 		mutate(
 			{ mobile, code },
 			{
-				onSuccess: async (data) => {
+				onSuccess: (data) => {
 					if (!data) {
-						setErrorM("فاقد اعتبار");
-						setStopCountdown(true);
+						setError("کد وارد شده صحیح نیست");
 						return;
 					}
 					setIsOpen(false);
 					setStep(1);
-					console.log({ data });
 				},
-				// onError: async (error) => {
-				// 	console.log({ error });
-				// 	setErrorM(error);
-				// },
 			}
 		);
 	};
 
-	// const setResendTime = () => {
-	// 	setTimeout(() => {
-	// 		setDisabled(false);
-	// 	}, 10000);
-	// };
-
-	// setResendTime();
-
 	const backHandler = () => {
 		setStep(1);
 		setMobile("");
-	};
-
-	const resendHandler = async () => {
-		// setDisabled(true);
-		setErrorM("");
-		setKey(Math.random() * 80000);
-		setStopCountdown(false);
-
-		// setResendTime();
-
-		mutateMobile({ mobile });
-
 		return;
 	};
 
-	const Completionist = () => (
-		<button onClick={resendHandler} className="h-16">
-			resend
-		</button>
-	);
-
-	const timerRenderer = (props) => {
-		if (props.completed) {
-			return <Completionist />;
-		} else {
-			// setKey(false);
-			return (
-				<div className="text-xs text-grayDark mt-4 mb-7" dir="rtl">
-					{props.formatted.minutes}:{props.formatted.seconds}&nbsp;
-					<span>تا ارسال مجدد کد </span>
-				</div>
-			);
-		}
+	const resendHandler = () => {
+		setStopCountdown(false);
+		setError("");
+		mutateMobile({ mobile });
+		return;
 	};
 
 	return (
@@ -96,12 +63,20 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 			>
 				<FaArrowLeftLong />
 			</button>
-			<div className="text-2xl font-medium text-center mb-2">
+			<div className="relative h-14 my-3">
+				<div
+					className={`block rounded-md p-2  text-sm absolute start-0 top-0 end-0 ${messageStyle}`}
+				>
+					{stopCountdown ? error : `کد تایید به شماره ${mobile} ارسال شد`}
+					{stopCountdown &&
+						!error.length &&
+						"در صورت دریافت نکردن کد تایید از گزینه ارسال مجدد استفاده کنید"}
+				</div>
+			</div>
+			<div className="text-xl font-medium text-center mb-5">
 				کد تایید را وارد کنید.
 			</div>
-			<div className="mb-4 text-center ">
-				کد تایید به شماره 09224526847 ارسال شد
-			</div>
+
 			<form
 				dir="ltr"
 				onSubmit={submitHandler}
@@ -111,7 +86,6 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 					<OtpInput
 						numInputs={6}
 						id="myInput"
-						placeholder=""
 						value={code}
 						onChange={(enteredCode) => {
 							setCode(enteredCode);
@@ -122,23 +96,12 @@ function CheckOTP({ mobile, setIsOpen, setStep, setMobile }) {
 						// isSuccessed={false}
 						// errorStyle="error"
 						// successStyle="success"
-						// separator={""}
-						// separateAfter={1}
 					/>
 				</div>
 
 				<div>
-					<Countdown
-						date={stopCountdown ? Date.now() : Date.now() + 0.05 * 60 * 1000}
-						key={Date.now()}
-						renderer={timerRenderer}
-						zeroPadTime={2}
-					>
-						<Completionist />
-					</Countdown>
+					<CountDown {...{ stopCountdown, resendHandler, setStopCountdown }} />
 				</div>
-
-				<div>{errorM}</div>
 
 				<button
 					type="submit"

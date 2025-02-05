@@ -1,15 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaUser } from "react-icons/fa6";
+
 import { useGetUserData } from "@/services/queries";
-import ModalContainer from "@/components/partilas/containers/ModalContainer/ModalContainer";
 import SendOTP from "./SendOTP/SendOTP";
 import CheckOTP from "./CheckOTP/CheckOTP";
-import Link from "next/link";
-import { FaUser } from "react-icons/fa6";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { deleteCookie } from "@/core/utils/cookie";
-import DropDown from "../DropDown/DropDown";
+
+import ModalContainer from "@/components/partilas/containers/ModalContainer/ModalContainer";
+import DropDown from "@/components/modules/DropDown/DropDown";
 
 function AuthForm() {
 	const [mobile, setMobile] = useState("");
@@ -65,8 +65,6 @@ function AuthForm() {
 			</ModalContainer>
 		</>
 	);
-
-	// if (data?.data) return <Link href="/profile">ورود به حساب کاربری</Link>;
 }
 
 export default AuthForm;
