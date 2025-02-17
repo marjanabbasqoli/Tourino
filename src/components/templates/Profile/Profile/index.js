@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ProfileForm from "./form";
 import UserDetails from "./userDetails";
 
+import "./profile.scss";
+
 function Profile({ data }) {
 	const { nationalCode } = data;
 	const [showForm, setShowForm] = useState(false);
