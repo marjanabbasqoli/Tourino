@@ -1,17 +1,16 @@
-import Link from "next/link";
+import Sidebar from "@/components/layouts/Sidebar/Sidebar";
 
 export default function ProfileLayout({ children }) {
 	return (
-		<>
-			<sidebar>
-				<Link href="/profile">پروفایل</Link>
-				<br />
-				<Link href="/profile/my-tours">تورهای من</Link>
-				<br />
-				<Link href="/profile/transactions">تراکنش ها</Link>
-				<br />
-			</sidebar>
-			{children}
-		</>
+		<div className="py-9">
+			<div className="container">
+				<div className="grid grid-cols-4 gap-6">
+					<div>
+						<Sidebar />
+					</div>
+					<div className="col-span-3">{children}</div>
+				</div>
+			</div>
+		</div>
 	);
 }

@@ -55,4 +55,16 @@ const useCheckout = () => {
 	return useMutation({ mutationFn, onSuccess });
 };
 
-export { useSendOtp, useCheckOtp, useAddToBasket, useCheckout };
+const useEditProfile = () => {
+	const queryClient = useQueryClient();
+
+	const mutationFn = (data) => api.put("user/profile", data);
+
+	const onSuccess = () => {
+		queryClient.invalidateQueries({ queryKey: ["user-data"] });
+	};
+
+	return useMutation({ mutationFn, onSuccess });
+};
+
+export { useSendOtp, useCheckOtp, useAddToBasket, useCheckout, useEditProfile };

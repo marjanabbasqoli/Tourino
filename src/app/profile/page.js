@@ -1,5 +1,8 @@
 "use client";
 
+
+
+import Profile from "@/components/templates/Profile/Profile";
 import { useGetUserData } from "@/services/queries";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +14,7 @@ function ProfilePage() {
 
 	if (error) return router.push("/");
 
-	return <div>{data.data.mobile}</div>;
+	return <Profile data={data.data} />;
 }
 
 export default ProfilePage;
