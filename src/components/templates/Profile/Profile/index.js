@@ -13,14 +13,27 @@ function Profile({ data }) {
 		if (!nationalCode) setShowForm(true);
 	}, []);
 
+	const showStyle = "visible opacity-100";
+	const hideStyle = "invisible opacity-0 absolute";
+
 	return (
-		<div>
-			{showForm ? (
+		<>
+			<div
+				className={`transition-opacity duration-300 ${
+					!showForm ? hideStyle : showStyle
+				}`}
+			>
 				<ProfileForm data={data} setShowForm={setShowForm} />
-			) : (
+			</div>
+
+			<div
+				className={`transition-opacity duration-300 ${
+					showForm ? hideStyle : showStyle
+				}`}
+			>
 				<UserDetails data={data} setShowForm={setShowForm} />
-			)}
-		</div>
+			</div>
+		</>
 	);
 }
 

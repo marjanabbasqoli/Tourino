@@ -1,8 +1,16 @@
 import { FaPen } from "react-icons/fa6";
 
 function UserDetails({ data, setShowForm }) {
-	const { mobile, email, firstName, lastName, gender, birthDate, payment } =
-		data;
+	const {
+		mobile,
+		email,
+		firstName,
+		lastName,
+		nationalCode,
+		gender,
+		birthDate,
+		payment,
+	} = data;
 
 	return (
 		<div>
@@ -42,6 +50,10 @@ function UserDetails({ data, setShowForm }) {
 					<div>
 						<label className="min-w-28 text-grayDark">نام خانوادگی</label>
 						<div className="font-medium">{lastName || "-"}</div>
+					</div>
+					<div>
+						<label className="min-w-28 text-grayDark">کذ ملی</label>
+						<div className="font-medium">{nationalCode || "-"}</div>
 					</div>
 					<div>
 						<label className="min-w-28 text-grayDark">جنسیت</label>

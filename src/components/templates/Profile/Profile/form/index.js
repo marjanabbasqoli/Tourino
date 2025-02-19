@@ -5,8 +5,8 @@ import * as z from "zod";
 import { useEditProfile } from "@/services/mutations";
 import formValidation from "@/core/utils/formValidation";
 
-import PersonalInfo from "./Personal";
-import AccountInfo from "./AccountInfo";
+import PersonalInfo from "./PersonalInfo";
+import AccountInfo from "./Account";
 
 function ProfileForm({ data, setShowForm }) {
 	const { mobile } = data;
@@ -58,20 +58,23 @@ function ProfileForm({ data, setShowForm }) {
 		<>
 			<form onSubmit={handleSubmit(submitHandler)}>
 				<div className="information-section">
-					<h3 className="font-medium text-lg mb-5">اطلاعات حساب کاربری</h3>
-					<div className="grid grid-cols-2 gap-7">
+					<h3 className="font-bold text-lg lg:mb-7 max-lg:mb-5">
+						اطلاعات حساب کاربری
+					</h3>
+					<div className="grid sm:grid-cols-2 lg:gap-7 max-lg:gap-4">
 						<div className="flex items-center">
-							<label>شماره موبایل</label>
-							<div>{mobile}</div>
+							<label className="min-w-28 text-grayDark">شماره موبایل</label>
+							<div className="font-medium">{mobile}</div>
 						</div>
-						<div>
+						<div className="relative">
 							<input
 								type="text"
 								defaultValue={data.email}
 								{...register("email")}
 								placeholder="ایمیل"
+								className={errors.email && "inputError"}
 							/>
-							<p>{errors.email?.message}</p>
+							<p className="error">{errors.email?.message}</p>
 						</div>
 					</div>
 				</div>
@@ -84,10 +87,19 @@ function ProfileForm({ data, setShowForm }) {
 					<AccountInfo data={data} form={{ register, errors }} />
 				</div>
 
-				<div>
-					<button type="submit">تایید</button>
+				<div className="flex justify-end *:w-36 *:h-11 *:rounded-lg *:font-medium *:transition-colors *:duration-300">
+					<button
+						type="submit"
+						className="bg-primary text-white hover:bg-primaryDark"
+					>
+						تایید
+					</button>
 					{data.nationalCode && (
-						<button type="button" onClick={() => setShowForm(false)}>
+						<button
+							type="button"
+							onClick={() => setShowForm(false)}
+							className="border-2 border-primary text-primary ms-2.5 hover:bg-primary hover:text-white"
+						>
 							انصراف
 						</button>
 					)}

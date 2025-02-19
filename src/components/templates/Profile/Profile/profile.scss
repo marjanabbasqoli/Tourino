@@ -5,3 +5,23 @@
 		@apply text-lg;
 	}
 }
+
+.information-section {
+	@apply border border-grayLight rounded-lg lg:mb-7 max-lg:mb-4 p-7 max-lg:px-4;
+	input,
+	select {
+		@apply border border-grayLight rounded-lg w-full h-11 px-2 appearance-none outline-none focus:border-primary transition-colors duration-300;
+	}
+
+	select + svg {
+		@apply absolute top-1/2 end-2 -translate-y-1/2;
+	}
+
+	.error {
+		@apply text-red-500 absolute start-1 bottom-[-24px] text-[13px];
+	}
+
+	.inputError {
+		@apply border-red-500 focus:border-red-500;
+	}
+}
