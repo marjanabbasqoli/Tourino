@@ -12,9 +12,9 @@ function ArrowDown() {
 			<path
 				d="M9.96004 4.975L6.70004 8.235C6.31504 8.62 5.68504 8.62 5.30004 8.235L2.04004 4.975"
 				stroke="#808080"
-				stroke-miterlimit="10"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeMiterlimit="10"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</svg>
 	);
