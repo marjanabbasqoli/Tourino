@@ -1,15 +1,11 @@
 "use client";
+import MyTransactions from "@/components/templates/Profile/myTransactions";
 import { useGetUserTransactions } from "@/services/queries";
 
 function Transactions() {
-	const { data } = useGetUserTransactions();
-	return (
-		<div>
-			{data?.data.map((t) => (
-				<div key={t.id}>{t.amount}</div>
-			))}
-		</div>
-	);
+	const { data, isPending } = useGetUserTransactions();
+	if (isPending) return <div>...loading</div>;
+	return <MyTransactions data={data?.data} />;
 }
 
 export default Transactions;

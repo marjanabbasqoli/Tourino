@@ -70,10 +70,31 @@ const displayVehicle = (vehicle) => {
 	return persianVehicle[index];
 };
 
+const displayPerisanDate = (date) => {
+	const weekday = new Date(date).toLocaleString("fa-IR", {
+		weekday: "long",
+	});
+
+	const day = new Date(date).toLocaleString("fa-IR", {
+		day: "2-digit",
+	});
+
+	const month = new Date(date).toLocaleString("fa-IR", {
+		month: "long",
+	});
+
+	const year = new Date(date).toLocaleString("fa-IR", {
+		year: "numeric",
+	});
+
+	return `${weekday} ${day} ${month} ${year}`;
+};
+
 export {
 	flattenObject,
 	DateToIso,
 	displayMonth,
 	displayVehicle,
 	displayDuration,
+	displayPerisanDate,
 };

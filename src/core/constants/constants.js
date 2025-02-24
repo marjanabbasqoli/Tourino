@@ -46,6 +46,13 @@ const destination = [
 	},
 ];
 
+const transactionsType = [
+	{
+		type: "Purchase",
+		title: "ثبت نام در تور گردشگری",
+	},
+];
+
 const mainMenu = [
 	{
 		title: "صفحه اصلی",
@@ -113,4 +120,11 @@ const servicesMenu = {
 	],
 };
 
-export { origin, destination, mainMenu, footerMenu, servicesMenu };
+export {
+	origin,
+	destination,
+	mainMenu,
+	footerMenu,
+	servicesMenu,
+	transactionsType,
+};

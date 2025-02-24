@@ -1,17 +1,14 @@
 "use client";
 
+import MyTours from "@/components/templates/Profile/myTours";
 import { useGetUserTours } from "@/services/queries";
 
-function MyTours() {
-	const { data } = useGetUserTours();
+function MyToursPage() {
+	const { data, isPending } = useGetUserTours();
 
-	return (
-		<div>
-			{data?.data.map((tour) => (
-				<div key={tour.id}>{tour.title}</div>
-			))}
-		</div>
-	);
+	if (isPending) return <div>Loading...</div>;
+
+	return <MyTours tours={data?.data} />;
 }
 
-export default MyTours;
+export default MyToursPage;
