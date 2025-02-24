@@ -49,7 +49,7 @@ const useCheckout = () => {
 	const mutationFn = (data) => api.post("order", data);
 
 	const onSuccess = () => {
-		queryClient.invalidateQueries({ queryKey: ["user/tours"] });
+		queryClient.invalidateQueries({ queryKey: ["get-user-tours"] });
 	};
 
 	return useMutation({ mutationFn, onSuccess });

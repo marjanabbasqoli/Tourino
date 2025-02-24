@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
 			>
 				<TanstackProvider>
 					<Header />
-					<div className="grow">{children}</div>
+					<div className="grow flex flex-col">{children}</div>
 					<Footer />
 				</TanstackProvider>
 			</body>

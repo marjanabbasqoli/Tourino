@@ -1,9 +1,8 @@
-import ReservButton from "@/components/modules/ReserveButton/ReservButton";
+import TourDetails from "@/components/templates/TourDetails";
 import { serverFetch } from "@/services/http";
 import { notFound } from "next/navigation";
-import React from "react";
 
-async function TourDetails({ params }) {
+async function TourDetailsPage({ params }) {
 	const data = await serverFetch(`tour/${params.tourId}`, null, {
 		cache: "no-store",
 	});
@@ -12,12 +11,7 @@ async function TourDetails({ params }) {
 		notFound();
 	}
 
-	return (
-		<div>
-			{data?.title}
-			<ReservButton id={params.tourId} />
-		</div>
-	);
+	return <TourDetails tour={data} id={params.tourId} />;
 }
 
-export default TourDetails;
+export default TourDetailsPage;
