@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import Profile from "@/components/templates/Profile/Profile";
 import { useGetUserData } from "@/services/queries";
 import { useRouter } from "next/navigation";

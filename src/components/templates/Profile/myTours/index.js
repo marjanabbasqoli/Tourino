@@ -1,3 +1,5 @@
+"use client";
+
 import MyTourCard from "./MyTourCard";
 
 function MyTours({ tours }) {

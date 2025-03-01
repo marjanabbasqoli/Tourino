@@ -1,6 +1,6 @@
 import ReservButton from "@/components/modules/ReserveButton/ReservButton";
 import { origin } from "@/core/constants/constants";
-import { displayVehicle } from "@/core/utils/helper";
+import { displayVehicle, getTourDuration } from "@/core/utils/helper";
 import {
 	FaBus,
 	FaCalendarDay,
@@ -23,14 +23,6 @@ function TourDetails({ tour, id }) {
 		availableSeats,
 		insurance,
 	} = tour;
-
-	const getTourDuration = (d1, d2) => {
-		const date1 = new Date(d1);
-		const date2 = new Date(d2);
-		const diffTime = Math.abs(date2 - date1);
-		const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-		return diffDays;
-	};
 
 	const days = getTourDuration(startDate, endDate);
 
@@ -70,7 +62,7 @@ function TourDetails({ tour, id }) {
 								<div className="flex items-center me-4">
 									<span className="text-2xl lg:text-3xl text-cyan-500 font-medium">
 										{price}
-									</span>{" "}
+									</span>
 									<span className="text-sm ms-1">تومان</span>
 								</div>
 								<ReservButton

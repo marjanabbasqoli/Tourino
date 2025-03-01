@@ -34,3 +34,16 @@ body {
 	@apply mx-auto;
 	@apply px-4;
 }
+
+.theme-white-box {
+	@apply bg-white border border-grayLight rounded-xl;
+}
+
+.theme-button {
+	@apply h-14 rounded-lg bg-primary text-white text-2xl px-2;
+}
+
+.theme-error {
+	@apply text-red-500 absolute start-1 bottom-[-24px] text-[13px];
+}
+

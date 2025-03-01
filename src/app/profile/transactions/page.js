@@ -1,4 +1,5 @@
 "use client";
+
 import MyTransactions from "@/components/templates/Profile/myTransactions";
 import { useGetUserTransactions } from "@/services/queries";
 

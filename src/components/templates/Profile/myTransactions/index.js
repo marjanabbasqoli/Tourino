@@ -27,7 +27,6 @@ function MyTransactions({ data }) {
 	if (!data?.length)
 		return (
 			<div className="bg-orange-100 text-orange-600 rounded-lg p-4">
-
 				تراکشنی ثبت نشده است.
 			</div>
 		);
@@ -44,8 +43,11 @@ function MyTransactions({ data }) {
 					</tr>
 				</thead>
 				<tbody>
-					{data.map((t) => (
-						<tr className="*:text-start *:px-4 *:py-3 *:even:bg-[#F3F3F3]">
+					{data.map((t, index) => (
+						<tr
+							className="*:text-start *:px-4 *:py-3 *:even:bg-[#F3F3F3]"
+							key={index}
+						>
 							<td>{displayDate(t.createdAt)}</td>
 							<td>{t.amount}</td>
 							<td>{transactionsType.find((item) => item.type === t.type)?.title}</td>
