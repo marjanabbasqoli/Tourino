@@ -1,4 +1,4 @@
-import moment from "moment/moment";
+import moment from "jalali-moment";
 
 const flattenObject = (obj, delimiter = ".", prefix = "") => {
 	const flattObject = Object.keys(obj).reduce((acc, k) => {
@@ -16,7 +16,20 @@ const flattenObject = (obj, delimiter = ".", prefix = "") => {
 	return flattObject;
 };
 
+const p2e = (s) =>
+	s.toString().replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+
 const DateToIso = (date) => new Date(date).toISOString();
+
+const convertToEnDate = (date) =>
+	moment
+		.from(`${date?.year}/${date?.month}/${date?.day}`, "fa", "YYYY-MM-DD")
+		.format("YYYY-MM-DD") + "T00:00:00.000Z";
+
+const convertToFaDate = (date) =>
+	moment
+		.from(`${date?.year}/${date?.month}/${date?.day}`, "en", "YYYY/MM/DD")
+		.format("YYYY/MM/DD");
 
 const displayMonth = (month) => {
 	const momentMonth = new Intl.DateTimeFormat("en-US-u-ca-persian", {
@@ -106,4 +119,7 @@ export {
 	displayDuration,
 	displayPerisanDate,
 	getTourDuration,
+	convertToEnDate,
+	convertToFaDate,
+	p2e,
 };

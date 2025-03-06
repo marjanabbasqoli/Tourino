@@ -1,6 +1,11 @@
 .react-select__control {
 	border: none !important;
 	box-shadow: none !important;
+	// padding-inline-start: 30px;
+	// &:before {
+	// 	content: "";
+
+	// }
 }
 
 .react-select__indicators {

@@ -2,6 +2,13 @@ import TourCard from "@/components/shared/tourCard/TourCard";
 
 function ToursList({ toursData }) {
 	// const data = toursData.slice(0, 4);
+	console.log({ toursData });
+	if (!toursData?.length)
+		return (
+			<div className="container">
+				<p>توری یافت نشد</p>
+			</div>
+		);
 
 	return (
 		<div className="container">
