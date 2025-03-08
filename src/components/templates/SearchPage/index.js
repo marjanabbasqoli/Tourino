@@ -3,7 +3,7 @@ import ToursList from "../HomePage/ToursList/ToursList";
 
 function SearchPage() {
 	return (
-		<div className="container">
+		<div className="container py-9">
 			<SearchForm />
 		</div>
 	);

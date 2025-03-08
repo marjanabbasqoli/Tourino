@@ -2,7 +2,7 @@ import TourCard from "@/components/shared/tourCard/TourCard";
 import Link from "next/link";
 
 function ToursList({ toursData }) {
-	toursData = toursData.slice(0, 4);
+	toursData = toursData.slice(0, 8);
 
 	if (!toursData?.length)
 		return (
@@ -13,7 +13,7 @@ function ToursList({ toursData }) {
 
 	return (
 		<div className="container">
-			<div className="text-2xl md:text-4xl font-bold mb-5 max-[500px]:text-center">
+			<div className="text-2xl md:text-4xl font-bold mb-7 max-[500px]:text-center">
 				جدیدترین تورها
 			</div>
 			<div className="grid min-[500px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -21,7 +21,12 @@ function ToursList({ toursData }) {
 					<TourCard tour={tour} key={tour.id} />
 				))}
 			</div>
-			<Link href="/tours">مشاهده همه</Link>
+			<Link
+				href="/tours"
+				className="bg-primary text-white p-2 w-40 rounded-lg ms-auto max-sm:me-auto block text-center text-lg mt-6"
+			>
+				مشاهده همه
+			</Link>
 		</div>
 	);
 }

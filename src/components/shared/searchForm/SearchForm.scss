@@ -1,0 +1,40 @@
+.react-select__control {
+	@apply lg:!text-xl !text-base !border-none !shadow-none ps-[30px] pe-2.5 !min-h-12;
+}
+
+.react-select__input-container {
+	cursor: pointer;
+}
+
+.react-select__indicators {
+	display: none !important;
+}
+
+.origin-select .react-select__control {
+	background: url("../../../assets/images/home/search/location.svg")
+		calc(100% - 10px) 45% no-repeat;
+}
+
+.destination-select .react-select__control {
+	background: url("../../../assets/images/home/search/global-search.svg")
+		calc(100% - 10px) 45% no-repeat;
+}
+
+.datepicker-input-class {
+	@apply w-full !border-none !outline-0 !text-start !ps-[38px] !text-sm lg:!text-xl placeholder:!text-[#2c2c2c] max-lg:placeholder:!text-base h-full cursor-pointer;
+	background: url("../../../assets/images/home/search/calendar.svg")
+		calc(100% - 10px) 45% no-repeat !important;
+}
+
+.theme-datepicker {
+	@apply w-full h-full;
+}
+
+.error-message {
+	@apply text-rose-600 absolute max-md:-bottom-5 -bottom-10 start-4 max-md:text-xs text-sm;
+	&.select {
+		@media (max-width: 767px) {
+			@apply bottom-full mb-1 text-xs;
+		}
+	}
+}

@@ -5,10 +5,8 @@ import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import { FaLocationDot, FaMapLocationDot } from "react-icons/fa6";
-// import DatePicker, {
-// 	utils,
-// } from "@amir04lm26/react-modern-calendar-date-picker";
+
+import "./SearchForm.scss";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 import { destination, origin } from "@/core/constants/constants";
@@ -132,9 +130,7 @@ function SearchForm() {
 						/>
 
 						{errors.originId && (
-							<p className="text-red-700 absolute bottom-0 start-0">
-								{errors.originId.message}
-							</p>
+							<p className="error-message select">{errors.originId.message}</p>
 						)}
 					</div>
 				)}
@@ -160,9 +156,7 @@ function SearchForm() {
 							theme={selectTheme}
 						/>
 						{errors.destinationId && (
-							<p className="text-red-700 absolute bottom-0 start-0">
-								{errors.destinationId.message}
-							</p>
+							<p className="error-message select">{errors.destinationId.message}</p>
 						)}
 					</div>
 				)}
@@ -193,16 +187,12 @@ function SearchForm() {
 								calendarPopperPosition="bottom"
 								colorPrimary="#28a745"
 							/>
+
+							{errors.date && <p className="error-message">{errors.date.message}</p>}
 						</div>
 					)}
 				/>
 			}
-
-			{errors.date && (
-				<p className="text-red-700 absolute bottom-0 start-0">
-					{errors.date.message}
-				</p>
-			)}
 
 			<button
 				type="submit"
