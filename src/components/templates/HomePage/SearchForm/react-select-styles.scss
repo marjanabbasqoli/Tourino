@@ -1,13 +1,47 @@
+:root {
+	--placeholder: #2c2c2c;
+}
+
 .react-select__control {
 	border: none !important;
 	box-shadow: none !important;
-	// padding-inline-start: 30px;
+	padding-inline-start: 30px;
+	padding-inline-end: 10px;
+	min-height: 48px !important;
+	@apply lg:!text-xl !text-base;
+
 	// &:before {
 	// 	content: "";
 
-	// }
+	// };
+}
+
+.react-select__input-container {
+	// background: red;
+	// padding-inline-start: 10px;
+	cursor: pointer;
 }
 
 .react-select__indicators {
 	display: none !important;
+}
+
+.origin-select .react-select__control {
+	background: url("../../../../assets/images/home/search/location.svg")
+		calc(100% - 10px) 45% no-repeat;
+}
+
+.destination-select .react-select__control {
+	background: url("../../../../assets/images/home/search/global-search.svg")
+		calc(100% - 10px) 45% no-repeat;
+}
+
+.datepicker-input-class {
+	@apply w-full !border-none !outline-0 !text-start !ps-[38px] !text-sm lg:!text-xl placeholder:!text-[var(--placeholder)] max-lg:placeholder:!text-base h-full cursor-pointer;
+	background: url("../../../../assets/images/home/search/calendar.svg")
+		calc(100% - 10px) 45% no-repeat !important;
+}
+
+.theme-datepicker {
+	@apply w-full h-full;
 }

@@ -1,9 +1,9 @@
 "use client";
 
-import { useGetTours } from "@/services/queries";
-import ToursList from "@/components/templates/HomePage/ToursList/ToursList";
-import SearchPage from "@/components/templates/SearchPage";
 import { useEffect } from "react";
+import { useGetTours } from "@/services/queries";
+import SearchPage from "@/components/templates/SearchPage";
+import SearchedList from "@/components/templates/SearchPage/SearchedList/SearchedList";
 
 function Search({ searchParams }) {
 	const { data, isPending, refetch } = useGetTours(searchParams);
@@ -17,7 +17,7 @@ function Search({ searchParams }) {
 	return (
 		<>
 			<SearchPage />
-			<ToursList toursData={data?.data} />
+			<SearchedList toursData={data?.data} />
 		</>
 	);
 }

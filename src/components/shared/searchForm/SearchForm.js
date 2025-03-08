@@ -21,10 +21,20 @@ import {
 } from "@/core/utils/helper";
 import DatePicker, { utils } from "react-modern-calendar-datepicker";
 
+const selectTheme = (theme) => ({
+	...theme,
+	colors: {
+		...theme?.colors,
+		primary: "var(--primary)",
+		primary75: "var(--primary)",
+		primary25: "rgba(40, 167, 69 , 15%)",
+		primary50: "rgba(40, 167, 69 , 20%)",
+	},
+});
+
 function SearchForm() {
 	const router = useRouter();
 	const { getQuery, getAllQueries } = useQuery();
-	const [error, setError] = useState("");
 
 	const originId = getQuery("originId");
 	const destinationId = getQuery("destinationId");
@@ -91,10 +101,6 @@ function SearchForm() {
 	}, []);
 
 	const submitHandler = (data) => {
-		// if (!data?.date?.startDate && !data?.date?.endDate) {
-		// 	setError("لطفا تاریخ موردنظر خود را انتخاب کنید");
-		// 	return;
-		// }
 		const query = queryString.stringify(flattenObject(data));
 		router.push(`/search?${query}`);
 	};
@@ -102,26 +108,27 @@ function SearchForm() {
 	return (
 		<form
 			onSubmit={handleSubmit(submitHandler)}
-			className="grid grid-cols-4 gap-4 border border-[rgba(0,0,0,0.15)] rounded-[20px] p-2.5"
+			className="grid grid-cols-2 md:grid-cols-11 gap-2 md:border border-[rgba(0,0,0,0.15)] rounded-[20px] md:p-2.5 md:ps-4"
 		>
 			<Controller
 				control={control}
 				name="originId"
 				rules={{ required: "لطفا مبدا را انتخاب کنید" }}
 				render={({ field: { onChange } }) => (
-					<div className="relative">
+					<div className="relative z-[101] md:col-span-3 max-md:border max-md:mb-1 border-grayLight rounded-xl">
 						<Select
 							onChange={(e) => onChange(e.value)}
 							options={origin}
 							placeholder={
-								<span className="flex items-center text-xl text-[#2C2C2C]">
-									<FaLocationDot className="me-2" /> مبدا
+								<span className="flex items-center text-base lg:text-xl text-[#2C2C2C]">
+									مبدا
 								</span>
 							}
 							instanceId={origin}
 							className="react-select-container origin-select"
 							classNamePrefix="react-select"
 							defaultValue={origin.find((o) => o.value === originId)}
+							theme={selectTheme}
 						/>
 
 						{errors.originId && (
@@ -137,20 +144,20 @@ function SearchForm() {
 				name="destinationId"
 				rules={{ required: "لطفا مقصد را انتخاب کنید" }}
 				render={({ field: { onChange } }) => (
-					<div className="relative">
+					<div className="relative z-[101] md:col-span-3 max-md:mb-1 max-md:border border-grayLight rounded-xl">
 						<Select
 							onChange={(e) => onChange(e.value)}
 							options={destination}
 							placeholder={
-								<span className="flex items-center  text-xl text-[#2C2C2C]">
-									<FaMapLocationDot className="me-2" />
+								<span className="flex items-center text-base lg:text-xl text-[#2C2C2C]">
 									مقصد
 								</span>
 							}
 							instanceId={destination}
-							className="react-select-container"
+							className="react-select-container destination-select"
 							classNamePrefix="react-select"
 							defaultValue={destination.find((o) => o.value === destinationId)}
+							theme={selectTheme}
 						/>
 						{errors.destinationId && (
 							<p className="text-red-700 absolute bottom-0 start-0">
@@ -160,44 +167,33 @@ function SearchForm() {
 					</div>
 				)}
 			/>
-			{/* <Controller
-					control={control}
-					name="date"
-					render={({ field: { onChange } }) => (
-						// <DatePicker
-						// 	onChange={(e) =>
-						// 		onChange({
-						// 			startDate: DateToIso(e.from),
-						// 			endDate: DateToIso(e.to),
-						// 		})
-						// 	}
-						// 	range
-						// 	inputClass={styles.dateSelection}
-						// 	className="basis-1/4"
-						// 	accentColor="#28A745"
-						// />
-						
-					)} */}
+
 			{
 				<Controller
 					control={control}
 					name="date"
 					rules={{ required: "لطفا تاریخ را انتخاب کنید" }}
 					render={({ field: { onChange } }) => (
-						<DatePicker
-							value={selectedDayRange}
-							onChange={(e) => {
-								setSelectedDayRange(e);
-								onChange({
-									startDate: DateToIso(convertToEnDate(e?.from)),
-									endDate: DateToIso(convertToEnDate(e?.to)),
-								});
-							}}
-							locale="fa"
-							inputPlaceholder="تاریخ"
-							shouldHighlightWeekends
-							minimumDate={utils("fa").getToday()}
-						/>
+						<div className="relative col-span-2 md:col-span-3 max-md:mb-4 h-12 max-md:border border-grayLight rounded-xl">
+							<DatePicker
+								value={selectedDayRange}
+								onChange={(e) => {
+									setSelectedDayRange(e);
+									onChange({
+										startDate: DateToIso(convertToEnDate(e?.from)),
+										endDate: DateToIso(convertToEnDate(e?.to)),
+									});
+								}}
+								locale="fa"
+								inputPlaceholder="تاریخ"
+								shouldHighlightWeekends
+								minimumDate={utils("fa").getToday()}
+								inputClassName="datepicker-input-class"
+								wrapperClassName="theme-datepicker"
+								calendarPopperPosition="bottom"
+								colorPrimary="#28a745"
+							/>
+						</div>
 					)}
 				/>
 			}
@@ -208,9 +204,10 @@ function SearchForm() {
 				</p>
 			)}
 
-			{/* <p>{error}</p> */}
-
-			<button type="submit" className="basis-1/4">
+			<button
+				type="submit"
+				className="basis-1/4 theme-button !h-12 !rounded-2xl w-full md:!w-48 max-w-full mr-auto col-span-2 max-lg:text-xl"
+			>
 				جستجو
 			</button>
 		</form>

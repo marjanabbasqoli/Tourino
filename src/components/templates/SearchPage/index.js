@@ -5,7 +5,6 @@ function SearchPage() {
 	return (
 		<div className="container">
 			<SearchForm />
-			{/* <ToursList toursData={{}} /> */}
 		</div>
 	);
 }
