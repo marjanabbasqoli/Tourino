@@ -1,5 +1,5 @@
 import { FaQuestion } from "react-icons/fa6";
-import HomeSlider from "./HomeSlider";
+import HomeSlider from "./HomeSlider/HomeSlider";
 
 function About() {
 	return (
