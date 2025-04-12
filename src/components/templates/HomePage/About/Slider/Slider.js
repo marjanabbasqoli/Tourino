@@ -10,10 +10,10 @@ import "swiper/css/effect-cards";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-import slide1 from "@/assets/images/home/slider/01.jpg";
-import slide2 from "@/assets/images/home/slider/02.jpg";
-import slide3 from "@/assets/images/home/slider/03.jpg";
-import slide4 from "@/assets/images/home/slider/04.jpg";
+import slide1 from "@/assets/images/home/slider/slide1.webp";
+import slide2 from "@/assets/images/home/slider/slide2.webp";
+import slide3 from "@/assets/images/home/slider/slide3.webp";
+import slide4 from "@/assets/images/home/slider/slide4.webp";
 
 const sliders = [slide1, slide2, slide3, slide4];
 

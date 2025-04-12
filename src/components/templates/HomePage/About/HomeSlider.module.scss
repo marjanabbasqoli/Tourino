@@ -1,0 +1,13 @@
+.slider {
+	@apply relative table ms-auto md:pe-20 max-lg:me-auto;
+	figure {
+		@apply absolute top-0 start-0 z-0 transition-all duration-300 sm:origin-left max-sm:!scale-95;
+		&.active {
+			@apply relative z-10;
+			transform: scale(1) translateX(0) !important;
+		}
+		img {
+			border-radius: 1rem;
+		}
+	}
+}

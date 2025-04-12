@@ -12,12 +12,12 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<>
-			<Banner />
+			{/* <Banner />
 			<HomeSearchForm />
 			<ToursList toursData={data} />
-			<Contact />
-			{/* <About /> */}
-			<Features />
+			<Contact /> */}
+			<About />
+			{/* <Features /> */}
 		</>
 	);
 }
