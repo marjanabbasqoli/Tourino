@@ -22,6 +22,7 @@ function Navbar() {
 					transition-all
 					duration-300
 					ease-in-out
+					z-[1000]
 					${isActive ? "visible opacity-100" : "invisible opacity-0"}`}
 				onClick={() => setIsActive(false)}
 			></span>
@@ -31,7 +32,7 @@ function Navbar() {
 			</i>
 
 			<ul
-				className={`lg:grow max-lg:px-3 me-10 max-lg:fixed max-lg:py-8 top-0 start-0 bottom-0 lg:flex bg-white z-10 max-lg:w-[209px] rounded-e-xl transition-all duration-300 ease-in-out 
+				className={`lg:grow max-lg:px-3 me-10 max-lg:fixed max-lg:py-8 top-0 start-0 bottom-0 lg:flex bg-white z-[1000] max-lg:w-[209px] rounded-e-xl transition-all duration-300 ease-in-out 
 					${
 						isActive
 							? "visible translate-x-0"

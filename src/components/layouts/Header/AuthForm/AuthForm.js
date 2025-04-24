@@ -4,16 +4,14 @@ import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa6";
 
 import { useGetUserData } from "@/services/queries";
-import SendOTP from "./SendOTP/SendOTP";
-import CheckOTP from "./CheckOTP/CheckOTP";
 import { deleteCookie } from "@/core/utils/cookie";
 
 import ModalContainer from "@/components/partilas/containers/ModalContainer/ModalContainer";
 import DropDown from "@/components/modules/DropDown/DropDown";
+import ModalContent from "./ModalContent/ModalContent";
 
 function AuthForm() {
 	const [mobile, setMobile] = useState("");
-	const [step, setStep] = useState(1);
 	const [isOpen, setIsOpen] = useState(false);
 	const [enabled, setEnabled] = useState(true);
 
@@ -45,23 +43,12 @@ function AuthForm() {
 				</span>
 			</button>
 			<ModalContainer isOpen={isOpen} setIsOpen={setIsOpen}>
-				{step === 1 && (
-					<SendOTP
-						setStep={setStep}
-						mobile={mobile}
-						setMobile={setMobile}
-						isOpen={isOpen}
-					/>
-				)}
-
-				{step === 2 && (
-					<CheckOTP
-						mobile={mobile}
-						setIsOpen={setIsOpen}
-						setStep={setStep}
-						setMobile={setMobile}
-					/>
-				)}
+				<ModalContent
+					isOpen={isOpen}
+					setIsOpen={setIsOpen}
+					mobile={mobile}
+					setMobile={setMobile}
+				/>
 			</ModalContainer>
 		</>
 	);

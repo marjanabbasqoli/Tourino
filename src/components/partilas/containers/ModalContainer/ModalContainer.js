@@ -4,7 +4,7 @@ function ModalContainer({ children, isOpen, setIsOpen }) {
 	// if (!isOpen) return;
 	return (
 		<div
-			className={`fixed top-0 start-0 w-full h-full flex items-center justify-center bg-black/25 backdrop-blur-sm z-10 p-4 transition-all duration-300 ${
+			className={`fixed top-0 start-0 w-full h-full flex items-center justify-center bg-black/25 backdrop-blur-sm p-4 transition-all duration-300 z-[1000] ${
 				!isOpen && "invisible opacity-0"
 			}`}
 		>
