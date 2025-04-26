@@ -16,71 +16,57 @@ import "./globals.css";
 // 	variable: "--font-geist-mono",
 // 	weight: "100 900",
 // });
-
-const yekanBakh = localFont({
+const myfont = localFont({
 	src: [
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Regular.eot",
+			path: "../assets/fonts/FaFont/YekanBakh-Regular.woff",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Regular.woff",
+			path: "../assets/fonts/FaFont/YekanBakh-Regular.woff2",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Regular.woff2",
+			path: "../assets/fonts/FaFont/YekanBakh-Regular.ttf",
 			weight: "400",
 			style: "normal",
 		},
+
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Regular.ttf",
-			weight: "400",
-			style: "normal",
-		},
-		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Medium.eot",
+			path: "../assets/fonts/FaFont/YekanBakh-Medium.woff",
 			weight: "500",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Medium.woff",
+			path: "../assets/fonts/FaFont/YekanBakh-Medium.woff2",
 			weight: "500",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Medium.woff2",
+			path: "../assets/fonts/FaFont/YekanBakh-Medium.ttf",
 			weight: "500",
 			style: "normal",
 		},
+
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-Medium.ttf",
-			weight: "500",
-			style: "normal",
-		},
-		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.eot",
+			path: "../assets/fonts/FaFont/YekanBakh-Bold.woff",
 			weight: "bold",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.woff",
+			path: "../assets/fonts/FaFont/YekanBakh-Bold.woff2",
 			weight: "bold",
 			style: "normal",
 		},
 		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.woff2",
-			weight: "bold",
-			style: "normal",
-		},
-		{
-			path: "../assets/fonts/yekan-bakh/YekanBakh-bold.ttf",
+			path: "../assets/fonts/FaFont/YekanBakh-Bold.ttf",
 			weight: "bold",
 			style: "normal",
 		},
 	],
-	variable: "--font-yekan-bakh",
+	variable: "--font-FaFont",
 	weight: "400 500 700",
 });
 
@@ -93,7 +79,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="fa" dir="rtl">
 			<body
-				className={`${yekanBakh.variable} selection:bg-primary selection:text-white text-base min-h-screen flex flex-col`}
+				className={`${myfont.variable} selection:bg-primary selection:text-white text-base min-h-screen flex flex-col`}
 			>
 				<TanstackProvider>
 					<Header />

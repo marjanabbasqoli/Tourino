@@ -9,6 +9,7 @@ import HomeSearchForm from "@/components/templates/HomePage/SearchForm/SearchFor
 
 export default async function Home({ searchParams }) {
 	const data = await serverFetch("tour", searchParams, { cache: "no-store" });
+	console.log({ data });
 
 	return (
 		<>

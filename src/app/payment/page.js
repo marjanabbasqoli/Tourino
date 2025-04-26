@@ -1,15 +1,12 @@
-"use client";
-
-import useQuery from "@/core/hooks/query";
 import Link from "next/link";
 import { FaCircleCheck, FaRegCircleXmark } from "react-icons/fa6";
 
-function PaymentPage() {
-	const { getQuery } = useQuery();
+function PaymentPage({ SearchParams }) {
+	// const { getQuery } = useQuery();
 
-	const status = getQuery("status");
+	// const status = getQuery("status");
 
-	if (status === "success")
+	if (SearchParams?.status === "success")
 		return (
 			<div className="container grow flex items-center justify-center py-9">
 				<div className="text-center">
@@ -21,7 +18,6 @@ function PaymentPage() {
 				</div>
 			</div>
 		);
-
 	return (
 		<div className="container grow flex items-center justify-center py-9">
 			<div className="text-center">

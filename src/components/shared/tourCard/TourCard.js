@@ -17,7 +17,11 @@ function TourCard({ tour }) {
 	return (
 		<div className="border border-grayLight rounded-xl max-w-[330px] mx-auto">
 			<Link href={`tours/${id}`} alt={title}>
-				<img src={image} alt={title} className="rounded-t-xl w-full" />
+				<img
+					src={`${process.env.NEXT_PUBLIC_BASE_URL || ""}${image}`}
+					alt={title}
+					className="rounded-t-xl w-full"
+				/>
 			</Link>
 			<div className="p-2">
 				<Link

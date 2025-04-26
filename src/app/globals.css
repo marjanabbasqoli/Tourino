@@ -20,7 +20,7 @@
 body {
 	color: var(--foreground);
 	background: var(--background);
-	font-family: var(--font-yekan-bakh), Arial, Helvetica, sans-serif;
+	font-family: var(--font-FaFont), Arial, Helvetica, sans-serif;
 	@apply text-base;
 }
 
@@ -46,4 +46,3 @@ body {
 .theme-error {
 	@apply text-red-500 absolute start-1 bottom-[-24px] text-[13px];
 }
-

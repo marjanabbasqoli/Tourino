@@ -2,7 +2,8 @@ import TourCard from "@/components/shared/tourCard/TourCard";
 import Link from "next/link";
 
 function ToursList({ toursData }) {
-	toursData = toursData.slice(0, 8);
+	// toursData = toursData?.slice(0, 8);
+	console.log({ toursData });
 
 	if (!toursData?.length)
 		return (
